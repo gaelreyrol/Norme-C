@@ -5,11 +5,10 @@
 **  @@Author: Zevran<info@zevran.net>
 */
 
-#include <stdio.h>
-
+#include "includes/main.h"
 #include "includes/filedesc.h"
 #include "includes/scan.h"
-#include "includes/main.h"
+#include "includes/tools.h"
 
 void    scan(char *file)
 {
@@ -21,8 +20,8 @@ void    scan(char *file)
 
 void    help(void)
 {
-    printf("Usage : ");
-    printf("file_name.(c/h)\n");
+    ft_putstr("Usage : ");
+    ft_putstr("file_name.(c/h)\n");
 }
 
 int main(int argc, char **argv)

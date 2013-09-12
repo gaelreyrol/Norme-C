@@ -9,8 +9,10 @@
 # define FILEDESC_H
 
 # include <fcntl.h>
-# include "main.h"
+# include <stdlib.h>
+# include <errno.h>
 
-void    ft_open_file(t_file *norme, char *file);
+int	    ft_open_file(t_file *norme, char *file);
+void	print_errno(char *file);
 
 #endif /* !FILEDESC_H */

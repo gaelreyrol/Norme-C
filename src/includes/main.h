@@ -10,6 +10,9 @@
 
 # include <stdio.h>
 
+void    help(void);
+void    scan(char *file);
+
 typedef struct  s_file
 {
     char    *tab_file;
