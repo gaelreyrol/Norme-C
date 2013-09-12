@@ -7,9 +7,9 @@
 
 #include <stdio.h>
 
-#include "filedesc.h"
-#include "scan.h"
-#include "main.h"
+#include "includes/filedesc.h"
+#include "includes/scan.h"
+#include "includes/main.h"
 
 void    scan(char *file)
 {

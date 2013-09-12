@@ -1,11 +1,11 @@
-/*
-**  @@ScriptName: Makefile
-**  @@Project: Norme-C
-**
-**  @@Author: Zevran<info@zevran.net>
-*/
+#
+#  @@ScriptName: Makefile
+#  @@Project: Norme-C
+#
+#  @@Author: Zevran<info@zevran.net>
+#
 
-NAME = Norme
+NAME = norme
 GCC = gcc -Wall -Werror -Wextra
 DEBUG = clang -Wall -Werror -Wextra -ggdb
 LIBRARIES = includes
@@ -13,17 +13,17 @@ SRC = src/
 RM = /bin/rm
 
 all:
-	$(GCC) -I $(LIBRARIES) -o $(NAME) $(SRC)*.c
+	@$(GCC) -I $(LIBRARIES) -o $(NAME) $(SRC)*.c
 
 debug: 
-	$(DEBUG) -I $(LIBRARIES) -o $(NAME) $(SRC)*.c
+	@$(DEBUG) -I $(LIBRARIES) -o $(NAME) $(SRC)*.c
 
 clean:
-	$(RM) -r norme.SYM
+	@$(RM) -r norme.SYM
 
 fclean:
-	$(RM) $(NAME)
+	@$(RM) -f $(NAME)
 
 re: clean fclean all
 
-.PHONY debug clean fclean re
+.PHONY: debug clean fclean re

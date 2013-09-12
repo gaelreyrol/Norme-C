@@ -5,8 +5,8 @@
 **  @@Author: Zevran<info@zevran.net>
 */
 
-#include "filedesc.h"
-#include "main.h"
+#include "includes/filedesc.h"
+#include "includes/main.h"
 
 void    ft_open_file(t_file *norme, char *file)
 {
