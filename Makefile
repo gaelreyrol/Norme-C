@@ -19,7 +19,7 @@ debug:
 	@$(DEBUG) -I $(LIBRARIES) -o $(NAME) $(SRC)*.c
 
 clean:
-	@$(RM) -r norme.SYM
+	@$(RM) -r norme.dSYM
 
 fclean:
 	@$(RM) -f $(NAME)
