@@ -14,8 +14,8 @@ void    scan(char *file)
 {
     t_file  *norme;
 
+    ft_print_name(file);
     ft_open_file(norme, file);
-    ft_putstr(norme->tab);
     //ft_scan_file(norme, file);
 }
 

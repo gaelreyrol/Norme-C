@@ -11,6 +11,7 @@
 # include <unistd.h>
 # include <limits.h>
 
+void	ft_print_name(char *name);
 void	ft_putstr(char *str);
 void    ft_putnbr(int nb);
 

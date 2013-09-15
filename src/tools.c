@@ -7,6 +7,13 @@
 
 #include "includes/tools.h"
 
+void	ft_print_name(char *name)
+{
+	ft_putstr("==> ");
+	ft_putstr(name);
+	ft_putstr(" <==\n");
+}
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
