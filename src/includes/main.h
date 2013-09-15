@@ -17,6 +17,7 @@ typedef struct  s_file
 {
     char    *tab;
     int     is_valid;
+    char	extension;
     char    *reason;
 }               t_file;
 

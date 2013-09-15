@@ -7,12 +7,27 @@
 
 #include "includes/main.h"
 #include "includes/scan.h"
+#include "includes/regex.h"
+#include "includes/tools.h"
 
 int		is_valid(t_file *norme)
 {
 	if (!norme || !norme->is_valid)
 		return (0);
 	return (1);
+}
+
+void	get_extension(t_file *norme, char *file)
+{
+	if (regex(file, "(\\.c$)") == 0)
+		norme->extension = 'c';
+	else if (regex(file, "(\\.h$)") == 0)
+		norme->extension = 'h';
+	else
+	{
+		norme->is_valid = 0;
+		norme->reason = "Bad extension file\n";
+	}
 }
 
 /*void    ft_scan_file(t_file *norme, char *file)

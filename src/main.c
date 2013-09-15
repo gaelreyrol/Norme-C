@@ -9,14 +9,24 @@
 #include "includes/filedesc.h"
 #include "includes/scan.h"
 #include "includes/tools.h"
+#include "includes/regex.h"
 
 void    scan(char *file)
 {
     t_file  *norme;
 
-    ft_print_name(file);
-    ft_open_file(norme, file);
-    //ft_scan_file(norme, file);
+    get_extension(norme, file);
+    if (norme->is_valid)
+    {
+        ft_print_name(file);
+        ft_open_file(norme, file);
+        //ft_scan_file(norme, file);
+    }
+    else
+    {
+        ft_putstr(norme->reason);
+        return ;
+    }
 }
 
 void    help(void)
