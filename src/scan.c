@@ -15,7 +15,7 @@ int		is_valid(t_file *norme)
 	return (1);
 }
 
-void    ft_scan_file(t_file *norme, char *file)
+/*void    ft_scan_file(t_file *norme, char *file)
 {
     
-}
+}*/

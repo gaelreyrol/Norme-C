@@ -15,7 +15,7 @@ void    scan(char *file);
 
 typedef struct  s_file
 {
-    char    *tab_file;
+    char    *tab;
     int     is_valid;
     char    *reason;
 }               t_file;
