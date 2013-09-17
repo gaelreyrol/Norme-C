@@ -10,6 +10,13 @@
 
 # define EOL "\n"
 
+enum e_config
+{
+	fnct_nbr = 5,
+	fnct_max = 25,
+	line_max = 80,
+};
+
 void	get_extension(t_file *norme, char *file);
 void    ft_scan_file(t_file *norme, char *file);
 
