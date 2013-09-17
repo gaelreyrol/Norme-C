@@ -8,7 +8,7 @@
 #ifndef SCAN_H
 # define SCAN_H
 
-# define EOL "\n"
+# define EOL '\n'
 
 enum e_config
 {
@@ -18,6 +18,7 @@ enum e_config
 };
 
 void	get_extension(t_file *norme, char *file);
+int		check_line_length(t_file *norme, char *line);
 void    ft_scan_file(t_file *norme, char *file);
 
 #endif /* !SCAN_H */

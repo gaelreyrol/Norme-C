@@ -32,7 +32,25 @@ void	get_extension(t_file *norme, char *file)
 	}
 }
 
+int		check_line_length(t_file *norme, char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != EOL)
+	{
+		if (line[i] == '\t')
+			i += 4;
+		else
+			i++;
 	}
+	if (i > line_max)
+	{
+		norme->is_valid = 0;
+		norme->reason = "ligne de plus 80 caractères";
+		return (0);
+	}
+	return (1);
 }
 
 /*void    ft_scan_file(t_file *norme, char *file)
