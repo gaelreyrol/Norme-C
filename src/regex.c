@@ -7,7 +7,7 @@
 
 #include "includes/regex.h"
 
-int	regex(char *request, char *regex)
+int		regex(char *request, char *regex)
 {
 	int err;
 	int match;

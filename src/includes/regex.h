@@ -11,6 +11,6 @@
 # include <stdlib.h>
 # include <regex.h>
 
-int	regex(char *request, char *regex);
+int		regex(char *request, char *regex);
 
 #endif /* !REGEX_H */
