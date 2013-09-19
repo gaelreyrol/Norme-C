@@ -5,6 +5,7 @@
 **  @@Author: Zevran<info@zevran.net>
 */
 
+#include "list.h"
 #include "includes/main.h"
 
 void	add_line_list(t_content **content, char *data)
