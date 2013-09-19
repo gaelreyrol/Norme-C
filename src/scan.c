@@ -28,7 +28,8 @@ void	get_extension(t_file *norme, char *file)
 		norme->is_valid = 0;
 		ft_putstr("norme: ");
 		ft_putstr(file);
-		norme->reason = " - Bad extension file\n";
+		ft_putstr(": ");
+		norme->reason = "Bad extension file\n";
 	}
 }
 

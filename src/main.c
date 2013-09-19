@@ -18,13 +18,13 @@ void    scan(char *file)
     get_extension(norme, file);
     if (norme->is_valid)
     {
-        ft_print_name(file);
-        ft_open_file(norme, file);
+        if (ft_open_file(norme, file))
+            ft_print_name(file);
         //ft_scan_file(norme, file);
     }
     else
     {
-        ft_putstr(norme->reason);
+        ft_print_color(norme->reason, RED);
         return ;
     }
 }

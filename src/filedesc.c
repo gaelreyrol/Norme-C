@@ -37,10 +37,11 @@ void	print_errno(char *file)
 {
 	ft_putstr("norme: ");
 	ft_putstr(file);
+	ft_putstr(": ");
 	if (errno == EACCES)
-		ft_putstr(": Permission denied\n");
+		ft_print_color("Permission denied\n", RED);
 	if (errno == ENOENT)
-		ft_putstr(": No such file or directory\n");
+		ft_print_color("No such file or directory\n", RED);
 	if (errno == EISDIR)
-		ft_putstr(": Is a directory\n");
+		ft_print_color("Is a directory\n", RED);
 }
