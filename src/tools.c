@@ -7,6 +7,13 @@
 
 #include "includes/tools.h"
 
+void	ft_print_color(char *str, char *color)
+{
+	ft_putstr(color);
+	ft_putstr(str);
+	ft_putstr(NRM);
+}
+
 void	ft_print_name(char *name)
 {
 	ft_putstr("==> ");
@@ -25,22 +32,22 @@ void	ft_putstr(char *str)
 		write(1, str++, 1);
 }
 
-void    ft_putnbr(int nb)
+void	ft_putnbr(int nb)
 {
-    if (nb > INT_MAX || nb < INT_MIN)
-        return ;
-    if (nb < 0)
-    {
-        ft_putchar('-');
-        nb = nb * -1;
-    }
-    if (nb >= 10)
-    {
-        ft_putnbr(nb / 10);
-        ft_putnbr(nb % 10);
-    }
-    else
-    {
-        ft_putchar(nb + '0');
-    }
+	if (nb > INT_MAX || nb < INT_MIN)
+		return ;
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = nb * -1;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+	{
+		ft_putchar(nb + '0');
+	}
 }
