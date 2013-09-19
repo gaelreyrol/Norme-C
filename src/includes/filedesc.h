@@ -12,7 +12,7 @@
 # include <stdlib.h>
 # include <errno.h>
 
-int	    ft_open_file(t_file *norme, char *file);
-void	print_errno(char *file);
+int		ft_open_file(t_file *file);
+void	print_errno(char *file_name);
 
 #endif /* !FILEDESC_H */

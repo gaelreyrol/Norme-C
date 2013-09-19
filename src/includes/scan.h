@@ -17,8 +17,7 @@ enum e_config
 	line_max = 80,
 };
 
-void	get_extension(t_file *norme, char *file);
-int		check_line_length(t_file *norme, char *line);
-void    ft_scan_file(t_file *norme, char *file);
+int		is_valid(t_file *file);
+void	get_extension(t_file *file);
 
 #endif /* !SCAN_H */

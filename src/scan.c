@@ -10,48 +10,22 @@
 #include "includes/regex.h"
 #include "includes/tools.h"
 
-int		is_valid(t_file *norme)
+int		is_valid(t_file *file)
 {
-	if (!norme || !norme->is_valid)
+	if (!file || !file->is_valid)
 		return (0);
 	return (1);
 }
 
-void	get_extension(t_file *norme, char *file)
+void	get_extension(t_file *file)
 {
-	if (regex(file, "(\\.c$)") == 0)
-		norme->extension = 'c';
-	else if (regex(file, "(\\.h$)") == 0)
-		norme->extension = 'h';
+	if (regex(file->name, "(\\.c$)") == 0)
+		file->extension = 'c';
+	else if (regex(file->name, "(\\.h$)") == 0)
+		file->extension = 'h';
 	else
 	{
-		norme->is_valid = 0;
-		norme->reason = "Bad extension file\n";
+		file->is_valid = 0;
+		file->reason = "Bad extension file\n";
 	}
 }
-
-int		check_line_length(t_file *norme, char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] != EOL)
-	{
-		if (line[i] == '\t')
-			i += 4;
-		else
-			i++;
-	}
-	if (i > line_max)
-	{
-		norme->is_valid = 0;
-		norme->reason = "ligne de plus 80 caractères";
-		return (0);
-	}
-	return (1);
-}
-
-/*void    ft_scan_file(t_file *norme, char *file)
-{
-    
-}*/

@@ -10,15 +10,37 @@
 
 # include <stdio.h>
 
-void    help(void);
-void    scan(char *file);
+void	help(void);
+void    scan(char *file_name);
 
-typedef struct  s_file
+/*
+** File Informations
+*/
+typedef struct 	s_file
 {
-    char    *tab;
-    int     is_valid;
-    char	extension;
-    char    *reason;
-}               t_file;
+	char	*name;
+	char	extension;
+	int		is_valid;
+}				t_file;
+
+/*
+** File Content
+** Lines are stored in a chain list.
+*/
+typedef struct 	s_content
+{
+	char *line;
+	struct s_content *next_line;
+}				t_content;
+
+/*
+** Errors List
+** Errors are stored in a chain list.
+*/
+typedef struct 	s_reason
+{
+	char *reason;
+	struct s_reason *next_reason;
+}				t_reason;
 
 #endif /* !MAIN_H */

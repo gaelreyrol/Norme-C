@@ -11,21 +11,25 @@
 #include "includes/tools.h"
 #include "includes/regex.h"
 
-void    scan(char *file)
+void    scan(char *file_name)
 {
-    t_file  *norme;
+    t_file  *file;
+    t_content *content;
+    t_reason *reason;
 
-    get_extension(norme, file);
+    file->name = file_name;
+
+    get_extension(file);
     if (norme->is_valid)
     {
-        if (ft_open_file(norme, file))
-            ft_print_name(file);
+        if (ft_open_file(file))
+            ft_print_name(file->name);
         //ft_scan_file(norme, file);
     }
     else
     {
         ft_putstr("norme: ");
-        ft_putstr(file);
+        ft_putstr(file->name);
         ft_putstr(": ");
         ft_print_color(norme->reason, RED);
         return ;

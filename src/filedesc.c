@@ -9,34 +9,34 @@
 #include "includes/filedesc.h"
 #include "includes/tools.h"
 
-int		ft_open_file(t_file *norme, char *file)
+int		ft_open_file(t_file *file)
 {
 	int		fd;
 	int		i;
 	char	tab;
 
 	i = 0;
-	fd = open(file, O_RDWR);
+	fd = open(file->name, O_RDWR);
 	if (fd == -1)
 	{
-		print_errno(file);
+		print_errno(file->name);
 		return (0);
 	}
 	while (read(fd, &tab, 1))
 		i++;
 	lseek(fd, 0, SEEK_SET);
-	norme->tab = (char * ) malloc(sizeof(char) * i);
-	if (norme->tab)
-		read(fd, norme->tab, i);
+	file->tab = (char * ) malloc(sizeof(char) * i);
+	if (file->tab)
+		read(fd, file->tab, i);
 	if (close(fd) == -1)
 		return (0);
 	return (1);
 }
 
-void	print_errno(char *file)
+void	print_errno(char *file_name)
 {
 	ft_putstr("norme: ");
-	ft_putstr(file);
+	ft_putstr(file_name);
 	ft_putstr(": ");
 	if (errno == EACCES)
 		ft_print_color("Permission denied\n", RED);
