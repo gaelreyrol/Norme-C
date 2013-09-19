@@ -24,6 +24,9 @@ void    scan(char *file)
     }
     else
     {
+        ft_putstr("norme: ");
+        ft_putstr(file);
+        ft_putstr(": ");
         ft_print_color(norme->reason, RED);
         return ;
     }
@@ -31,8 +34,7 @@ void    scan(char *file)
 
 void    help(void)
 {
-    ft_putstr("Usage : ");
-    ft_putstr("file_name.(c/h)\n");
+    ft_putstr("Usage : file_name.(c/h)\n");
 }
 
 int main(int argc, char **argv)
