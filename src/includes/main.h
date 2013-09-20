@@ -30,7 +30,7 @@ typedef struct 	s_file
 typedef struct 	s_content
 {
 	char *line;
-	struct s_content *next_line;
+	struct s_content *next;
 }				t_content;
 
 /*
@@ -40,7 +40,7 @@ typedef struct 	s_content
 typedef struct 	s_reason
 {
 	char *reason;
-	struct s_reason *next_reason;
+	struct s_reason *next;
 }				t_reason;
 
 #endif /* !MAIN_H */
