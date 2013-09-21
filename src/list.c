@@ -45,6 +45,15 @@ void	view_reason_list(t_file *file, t_reason *reason)
 	}
 }
 
+void	view_content_list(t_content *content)
+{
+	while (content)
+	{
+        ft_putstr(content->line);
+		content = content->next;
+	}
+}
+
 void	clear_reason_list(t_reason **reason)
 {
 	t_reason	*temp;

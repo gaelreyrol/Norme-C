@@ -24,7 +24,10 @@ void    scan(char *file_name)
     if (file->is_valid)
     {
         if (ft_open_file(file, &content))
+        {
             ft_print_name(file->name);
+            view_content_list(content);
+        }
         //ft_scan_file(norme, file);
     }
     else
