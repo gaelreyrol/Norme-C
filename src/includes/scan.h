@@ -18,6 +18,6 @@ enum e_config
 };
 
 int		is_valid(t_file *file);
-void	get_extension(t_file *file);
+void	get_extension(t_file *file, t_reason **reason);
 
 #endif /* !SCAN_H */

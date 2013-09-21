@@ -10,6 +10,7 @@
 #include "includes/scan.h"
 #include "includes/tools.h"
 #include "includes/regex.h"
+#include "includes/list.h"
 
 void    scan(char *file_name)
 {
@@ -19,19 +20,16 @@ void    scan(char *file_name)
 
     file->name = file_name;
 
-    get_extension(file);
-    if (norme->is_valid)
+    get_extension(file, &reason);
+    if (file->is_valid)
     {
-        if (ft_open_file(file))
+        if (ft_open_file(file, &content))
             ft_print_name(file->name);
         //ft_scan_file(norme, file);
     }
     else
     {
-        ft_putstr("norme: ");
-        ft_putstr(file->name);
-        ft_putstr(": ");
-        ft_print_color(norme->reason, RED);
+        view_reason_list(file, reason);
         return ;
     }
 }

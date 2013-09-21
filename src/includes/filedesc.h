@@ -8,11 +8,11 @@
 #ifndef FILEDESC_H
 # define FILEDESC_H
 
-# include <fcntl.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
 
-int		ft_open_file(t_file *file);
+int		ft_open_file(t_file *file, t_content **content);
 void	print_errno(char *file_name);
 
 #endif /* !FILEDESC_H */

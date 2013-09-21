@@ -15,6 +15,6 @@ void	add_line_list(t_content **content, char *data);
 void	add_reason_list(t_reason **reason, char *data);
 void	clear_reason_list(t_reason **reason);
 void	clear_content_list(t_content **content);
-void	view_reason_list(t_reason *reason);
+void	view_reason_list(t_file *file, t_reason *reason);
 
 #endif /* !LIST_H */

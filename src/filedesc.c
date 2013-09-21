@@ -8,27 +8,25 @@
 #include "includes/main.h"
 #include "includes/filedesc.h"
 #include "includes/tools.h"
+#include "includes/list.h"
 
-int		ft_open_file(t_file *file)
+int		ft_open_file(t_file *file, t_content **content)
 {
-	int		fd;
-	int		i;
-	char	tab;
+	FILE	*fd;
+	int		read;
+	size_t	len;
+	char	*line = NULL;
 
-	i = 0;
-	fd = open(file->name, O_RDWR);
-	if (fd == -1)
+	len = 0;
+	fd = fopen(file->name, "r");
+	if (fd == 0)
 	{
 		print_errno(file->name);
 		return (0);
 	}
-	while (read(fd, &tab, 1))
-		i++;
-	lseek(fd, 0, SEEK_SET);
-	file->tab = (char * ) malloc(sizeof(char) * i);
-	if (file->tab)
-		read(fd, file->tab, i);
-	if (close(fd) == -1)
+	while ((read = getline(&line, &len, fd)) != -1)
+		add_line_list(content, line);
+	if (fclose(fd) == -1)
 		return (0);
 	return (1);
 }

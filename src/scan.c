@@ -9,6 +9,7 @@
 #include "includes/scan.h"
 #include "includes/regex.h"
 #include "includes/tools.h"
+#include "includes/list.h"
 
 int		is_valid(t_file *file)
 {
@@ -17,7 +18,7 @@ int		is_valid(t_file *file)
 	return (1);
 }
 
-void	get_extension(t_file *file)
+void	get_extension(t_file *file, t_reason **reason)
 {
 	if (regex(file->name, "(\\.c$)") == 0)
 		file->extension = 'c';
@@ -26,6 +27,6 @@ void	get_extension(t_file *file)
 	else
 	{
 		file->is_valid = 0;
-		file->reason = "Bad extension file\n";
+		add_reason_list(reason, "Bad extension file\n");
 	}
 }
