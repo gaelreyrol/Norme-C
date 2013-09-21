@@ -15,8 +15,8 @@
 void    scan(char *file_name)
 {
     t_file  *file;
-    t_content *content;
-    t_reason *reason;
+    t_content *content = NULL;
+    t_reason *reason = NULL;
 
     file->name = file_name;
 
@@ -30,6 +30,7 @@ void    scan(char *file_name)
     else
     {
         view_reason_list(file, reason);
+        clear_reason_list(&reason);
         return ;
     }
 }
