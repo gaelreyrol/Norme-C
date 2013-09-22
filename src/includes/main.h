@@ -25,13 +25,20 @@ typedef struct 	s_file
 
 /*
 ** File Content
-** Lines are stored in a chain list.
+** Lines are stored in a double chain list.
 */
 typedef struct 	s_content
 {
 	char *line;
 	struct s_content *next;
+	struct s_content *prev;
 }				t_content;
+
+typedef struct
+{
+	t_content *first;
+	t_content *last;
+}				t_list_content;
 
 /*
 ** Errors List

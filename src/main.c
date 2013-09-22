@@ -15,18 +15,19 @@
 void    scan(char *file_name)
 {
     t_file  *file;
-    t_content *content = NULL;
+    t_list_content *t = malloc(sizeof(t_list_content));
     t_reason *reason = NULL;
 
     file->name = file_name;
-
+    init_content_list(t);
     get_extension(file, &reason);
     if (file->is_valid)
     {
-        if (ft_open_file(file, &content))
+        init_content_list(t);
+        if (ft_open_file(file, t))
         {
             ft_print_name(file->name);
-            view_content_list(content);
+            view_content_list(t);
         }
     }
     else

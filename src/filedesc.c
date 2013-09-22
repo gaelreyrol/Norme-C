@@ -10,7 +10,7 @@
 #include "includes/tools.h"
 #include "includes/list.h"
 
-int		ft_open_file(t_file *file, t_content **content)
+int		ft_open_file(t_file *file, t_list_content *t)
 {
 	FILE	*fd;
 	int		read;
@@ -25,7 +25,7 @@ int		ft_open_file(t_file *file, t_content **content)
 		return (0);
 	}
 	while ((read = getline(&line, &len, fd)) != -1)
-		add_line_list(content, strdup(line));
+		add_line_list(t, strdup(line));
 	if (fclose(fd) == -1)
 		return (0);
 	return (1);
