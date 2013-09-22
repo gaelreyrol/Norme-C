@@ -25,7 +25,7 @@ int		ft_open_file(t_file *file, t_content **content)
 		return (0);
 	}
 	while ((read = getline(&line, &len, fd)) != -1)
-		add_line_list(content, line);
+		add_line_list(content, strdup(line));
 	if (fclose(fd) == -1)
 		return (0);
 	return (1);

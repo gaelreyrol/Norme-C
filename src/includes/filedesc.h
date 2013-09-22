@@ -11,6 +11,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <string.h>
 
 int		ft_open_file(t_file *file, t_content **content);
 void	print_errno(char *file_name);

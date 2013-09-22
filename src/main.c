@@ -28,7 +28,6 @@ void    scan(char *file_name)
             ft_print_name(file->name);
             view_content_list(content);
         }
-        //ft_scan_file(norme, file);
     }
     else
     {
