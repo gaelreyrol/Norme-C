@@ -24,7 +24,7 @@ void	add_line_list(t_list_content *t, char *data)
 		return ;
 	element->line = data;
 	element->next = t->first;
-	element->prev = t->last;
+	element->prev = NULL;
 	if (t->first)
 		t->first->prev = element;
 	else
