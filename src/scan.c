@@ -31,13 +31,11 @@ void	get_extension(t_file *file, t_reason **reason)
 	}
 }
 
-int		check_integrity_header(t_list_content *t, t_reason **reason)
+int		check_integrity_header(t_list_content *t, t_content *content, t_reason **reason)
 {
-	t_content *content;
 	int is_corrupted;
 	int	i;
 
-	content = t->last;
 	is_corrupted = 0;
 	i = 0;
 	while (i < head_height && content)
@@ -76,8 +74,9 @@ void	scan_c_file(t_file *file, t_list_content *t, t_reason **reason)
 	t_content *content;
 
 	content = t->last;
-	if (!check_integrity_header(t, reason))
+	if (!check_integrity_header(t, content, reason))
 		file->is_valid = 0;
+	content = t->last;
 	while(content)
 	{
 		content = content->prev;
@@ -89,8 +88,9 @@ void	scan_h_file(t_file *file, t_list_content *t, t_reason **reason)
 	t_content *content;
 
 	content = t->last;
-	if (!check_integrity_header(t, reason))
+	if (!check_integrity_header(t, content, reason))
 		file->is_valid = 0;
+	content = t->last;
 	while(content)
 	{
 		content = content->prev;
