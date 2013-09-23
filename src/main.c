@@ -15,9 +15,11 @@
 void    scan(char *file_name)
 {
 	t_file  *file;
-	t_list_content *t = malloc(sizeof(t_list_content));
-	t_reason *reason = NULL;
+	t_list_content *t;
+	t_reason *reason;
 
+	t = malloc(sizeof(t_list_content));
+	reason = NULL;
 	file->name = file_name;
 	init_content_list(t);
 	get_extension(file, &reason);
@@ -26,15 +28,11 @@ void    scan(char *file_name)
 		if (ft_open_file(file, t))
 		{
 			ft_print_name(file->name);
-			view_content_list(t);
+			scan_file_type(file, t, &reason, file->extension);
 		}
 	}
-	else
-	{
-		view_reason_list(file, reason);
-		clear_reason_list(&reason);
-		return ;
-	}
+	view_reason_list(file, reason);
+	clear_reason_list(&reason);
 }
 
 void	help(void)
