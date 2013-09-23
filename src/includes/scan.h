@@ -15,7 +15,7 @@ enum e_config
 	fnct_nbr 	= 5,
 	fnct_max 	= 25,
 	line_max 	= 80,
-	head_height = 10
+	head_height = 11
 };
 
 int		is_valid(t_file *file);
