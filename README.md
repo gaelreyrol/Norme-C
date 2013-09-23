@@ -17,7 +17,7 @@ ToDo :
 --------
 
 - Filtres (regex) :
-	- Intégrité du header
+	- Intégrité du header - Done
 	- 80 caractères par lignes
 	- Mots-clé et fonctions interdites
 	- Indetation
