@@ -42,7 +42,7 @@ int		check_integrity_header(t_list_content *t, t_reason **reason)
 	i = 0;
 	while (i < head_height && content)
 	{
-		if ((!regex(content->line, "(\\*/\n$)")) || (!regex(content->line, "(^/*)")) || (strlen(content->line) > 81))
+		if ((!regex(content->line, "(\\*/\n$)")) || (!regex(content->line, "(^/\\*)")) || (strlen(content->line) > 81))
 			is_corrupted = 1;
 		content = content->prev;
 		i++;
