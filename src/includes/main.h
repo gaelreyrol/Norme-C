@@ -43,13 +43,20 @@ typedef struct
 
 /*
 ** Errors List
-** Errors are stored in a chain list.
+** Errors are stored in a double chain list.
 */
 typedef struct 	s_reason
 {
 	char	*reason;
 	int		line_nbr;
 	struct s_reason *next;
+	struct s_reason *prev;
 }				t_reason;
+
+typedef struct
+{
+	t_reason *first;
+	t_reason *last;
+}				t_list_reason;
 
 #endif /* !MAIN_H */

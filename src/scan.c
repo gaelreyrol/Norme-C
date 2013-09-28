@@ -18,7 +18,7 @@ int		is_valid(t_file *file)
 	return (1);
 }
 
-void	get_extension(t_file *file, t_reason **reason)
+void	get_extension(t_file *file, t_list_reason *r)
 {
 	if (regex(file->name, "(\\.c$)"))
 		file->extension = 'c';
@@ -27,14 +27,13 @@ void	get_extension(t_file *file, t_reason **reason)
 	else
 	{
 		file->is_valid = 0;
-		add_reason_list(reason, "Bad extension file\n", 0);
+		add_reason_list(r, "Bad extension file\n", 0);
 	}
 }
 
-int		check_integrity_header(t_list_content *t, t_content *content, t_reason **reason)
+int		check_integrity_header(t_list_content *t, t_content *content, t_list_reason *r)
 {
 	int is_corrupted;
-	int line_nbr;
 	int	i;
 
 	is_corrupted = 0;
@@ -43,50 +42,46 @@ int		check_integrity_header(t_list_content *t, t_content *content, t_reason **re
 	{
 		if ((strlen(content->line) > 81))
 		{
-			is_corrupted = 2;
-			line_nbr = content->line_nbr;
+			is_corrupted = 1;
+			add_reason_list(r, "Line larger than 80 characters\n", content->line_nbr);
 		}
 		else if ((!regex(content->line, "(\\*/\n$)")) || (!regex(content->line, "(^/\\*)")))
 		{
 			is_corrupted = 1;
-			line_nbr = content->line_nbr;
+			add_reason_list(r, "Corrupted header line (must begin by '/*' and finish by '*/'\n", content->line_nbr);
 		}
 		content = content->prev;
 		i++;
 	}
 	t->last = content;
 	if (is_corrupted)
-	{
-		if (is_corrupted == 1)
-			add_reason_list(reason, "Corrupted header\n", line_nbr);
-		else if (is_corrupted == 2)
-			add_reason_list(reason, "Line larger than 80 characters\n", line_nbr);
 		return (0);
-	}
 	return (1);
 }
 
-void	scan_file_type(t_file *file, t_list_content *t, t_reason **reason, char type)
+void	scan_file_type(t_file *file, t_list_content *t, t_list_reason *r, char type)
 {
 	switch (type)
 	{
 		case 'c':
-			scan_c_file(file, t, reason);
+			scan_c_file(file, t, r);
 			break;
 		case 'h':
-			scan_h_file(file, t, reason);
+			scan_h_file(file, t, r);
 			break;
 		default:
 			break;
 	}
 }
 
-void	scan_c_file(t_file *file, t_list_content *t, t_reason **reason)
+void	scan_c_file(t_file *file, t_list_content *t, t_list_reason *r)
 {
-	t_content *content;
+	t_content	*content;
+	t_reason	*reason;
 
 	content = t->last;
-	if (!check_integrity_header(t, content, reason))
+	reason = r->last;
+	if (!check_integrity_header(t, content, r))
 		file->is_valid = 0;
 	content = t->last;
 	while(content)
@@ -95,12 +90,14 @@ void	scan_c_file(t_file *file, t_list_content *t, t_reason **reason)
 	}
 }
 
-void	scan_h_file(t_file *file, t_list_content *t, t_reason **reason)
+void	scan_h_file(t_file *file, t_list_content *t, t_list_reason *r)
 {
-	t_content *content;
+	t_content	*content;
+	t_reason	*reason;
 
 	content = t->last;
-	if (!check_integrity_header(t, content, reason))
+	reason = r->last;
+	if (!check_integrity_header(t, content, r))
 		file->is_valid = 0;
 	content = t->last;
 	while(content)

@@ -19,12 +19,12 @@ enum e_config
 };
 
 int		is_valid(t_file *file);
-void	get_extension(t_file *file, t_reason **reason);
+void	get_extension(t_file *file, t_list_reason *r);
 
-int		check_integrity_header(t_list_content *t, t_content *content, t_reason **reason);
+int		check_integrity_header(t_list_content *t, t_content *content, t_list_reason *r);
 
-void	scan_file_type(t_file *file, t_list_content *t, t_reason **reason, char type);
-void	scan_c_file(t_file *file, t_list_content *t, t_reason **reason);
-void	scan_h_file(t_file *file, t_list_content *t, t_reason **reason);
+void	scan_file_type(t_file *file, t_list_content *t, t_list_reason *r, char type);
+void	scan_c_file(t_file *file, t_list_content *t, t_list_reason *r);
+void	scan_h_file(t_file *file, t_list_content *t, t_list_reason *r);
 
 #endif /* !SCAN_H */

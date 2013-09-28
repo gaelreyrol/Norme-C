@@ -9,10 +9,13 @@
 #include "includes/tools.h"
 #include "includes/list.h"
 
-void	init_content_list(t_list_content *t)
+void	init_lists(t_list_content *t, t_list_reason *r)
 {
 	t->first = NULL;
 	t->last = NULL;
+
+	r->first = NULL;
+	r->last = NULL;
 }
 
 void	add_line_list(t_list_content *t, char *data, int line_nbr)
@@ -33,7 +36,7 @@ void	add_line_list(t_list_content *t, char *data, int line_nbr)
 	t->first = element;
 }
 
-void	add_reason_list(t_reason **reason, char *data, int line_nbr)
+void	add_reason_list(t_list_reason *r, char *data, int line_nbr)
 {
 	t_reason *element;
 
@@ -42,12 +45,18 @@ void	add_reason_list(t_reason **reason, char *data, int line_nbr)
 		return ;
 	element->reason = data;
 	element->line_nbr = line_nbr;
-	element->next = *reason;
-	*reason = element;
+	element->next = r->first;
+	element->prev = NULL;
+	if (r->first)
+		r->first->prev = element;
+	else
+		r->last = element;
+	r->first = element;
 }
 
-void	view_reason_list(t_file *file, t_reason *reason)
+void	view_reason_list(t_file *file, t_list_reason *r)
 {
+	t_reason *reason = r->last;
 	while (reason)
 	{
 		ft_putstr("norme: ");
@@ -59,7 +68,7 @@ void	view_reason_list(t_file *file, t_reason *reason)
 		}
 		ft_putstr(" ");
 		ft_print_color(reason->reason, RED);
-		reason = reason->next;
+		reason = reason->prev;
 	}
 }
 
@@ -74,15 +83,20 @@ void	view_content_list(t_list_content *t)
 	}
 }
 
-void	clear_reason_list(t_reason **reason)
+void	clear_reason_list(t_list_reason *r)
 {
-	t_reason	*temp;
-	while (*reason)
+	t_reason	*element;
+	t_reason	*f_element;
+
+	f_element = r->first;
+	while (f_element)
 	{
-		temp = (*reason)->next;
-		free(*reason);
-		*reason = temp;
+		element = f_element;
+		f_element = f_element->next;
+		free(element);
 	}
+	r->first = NULL;
+	r->last = NULL;
 }
 
 void	clear_content_list(t_list_content *t)
