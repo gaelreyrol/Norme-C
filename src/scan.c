@@ -27,7 +27,7 @@ void	get_extension(t_file *file, t_list_reason *r)
 	else
 	{
 		file->is_valid = 0;
-		add_reason_list(r, "Bad extension file\n", 0);
+		add_reason_list(r, BAD_FILE, 0);
 	}
 }
 
@@ -43,12 +43,12 @@ int		check_integrity_header(t_list_content *t, t_content *content, t_list_reason
 		if ((strlen(content->line) > 81))
 		{
 			is_corrupted = 1;
-			add_reason_list(r, "Line larger than 80 characters\n", content->line_nbr);
+			add_reason_list(r, LINE_LEN, content->line_nbr);
 		}
 		else if ((!regex(content->line, "(\\*/\n$)")) || (!regex(content->line, "(^/\\*)")))
 		{
 			is_corrupted = 1;
-			add_reason_list(r, "Corrupted header line (must begin by '/*' and finish by '*/')\n", content->line_nbr);
+			add_reason_list(r, CORUPT_H, content->line_nbr);
 		}
 		content = content->prev;
 		i++;

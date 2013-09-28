@@ -18,6 +18,10 @@ enum e_config
 	head_height = 11
 };
 
+# define BAD_FILE "Bad extension file\n"
+# define LINE_LEN "Line larger than 80 characters\n"
+# define CORUPT_H "Corrupted header line (must begin by '/*' and finish by '*/')\n"
+
 int		is_valid(t_file *file);
 void	get_extension(t_file *file, t_list_reason *r);
 
