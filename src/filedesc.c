@@ -13,10 +13,12 @@
 int		ft_open_file(t_file *file, t_list_content *t)
 {
 	FILE	*fd;
+	int		line_nbr;
 	int		read;
 	size_t	len;
 	char	*line = NULL;
 
+	line_nbr = 1;
 	len = 0;
 	fd = fopen(file->name, "r");
 	if (fd == 0)
@@ -25,7 +27,10 @@ int		ft_open_file(t_file *file, t_list_content *t)
 		return (0);
 	}
 	while ((read = getline(&line, &len, fd)) != -1)
-		add_line_list(t, strdup(line));
+	{
+		add_line_list(t, strdup(line), line_nbr);
+		line_nbr++;
+	}
 	if (fclose(fd) == -1)
 		return (0);
 	return (1);

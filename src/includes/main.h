@@ -11,7 +11,7 @@
 # include <stdio.h>
 
 void	help(void);
-void    scan(char *file_name);
+void	scan(char *file_name);
 
 /*
 ** File Informations
@@ -29,7 +29,8 @@ typedef struct 	s_file
 */
 typedef struct 	s_content
 {
-	char *line;
+	char	*line;
+	int		line_nbr;
 	struct s_content *next;
 	struct s_content *prev;
 }				t_content;
@@ -46,7 +47,8 @@ typedef struct
 */
 typedef struct 	s_reason
 {
-	char *reason;
+	char	*reason;
+	int		line_nbr;
 	struct s_reason *next;
 }				t_reason;
 

@@ -27,28 +27,40 @@ void	get_extension(t_file *file, t_reason **reason)
 	else
 	{
 		file->is_valid = 0;
-		add_reason_list(reason, "Bad extension file\n");
+		add_reason_list(reason, "Bad extension file\n", 0);
 	}
 }
 
 int		check_integrity_header(t_list_content *t, t_content *content, t_reason **reason)
 {
 	int is_corrupted;
+	int line_nbr;
 	int	i;
 
 	is_corrupted = 0;
 	i = 0;
 	while (i < head_height && content)
 	{
-		if ((!regex(content->line, "(\\*/\n$)")) || (!regex(content->line, "(^/\\*)")) || (strlen(content->line) > 81))
+		if ((strlen(content->line) > 81))
+		{
+			is_corrupted = 2;
+			line_nbr = content->line_nbr;
+		}
+		else if ((!regex(content->line, "(\\*/\n$)")) || (!regex(content->line, "(^/\\*)")))
+		{
 			is_corrupted = 1;
+			line_nbr = content->line_nbr;
+		}
 		content = content->prev;
 		i++;
 	}
 	t->last = content;
 	if (is_corrupted)
 	{
-		add_reason_list(reason, "Corrupted header\n");
+		if (is_corrupted == 1)
+			add_reason_list(reason, "Corrupted header\n", line_nbr);
+		else if (is_corrupted == 2)
+			add_reason_list(reason, "Line larger than 80 characters\n", line_nbr);
 		return (0);
 	}
 	return (1);

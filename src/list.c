@@ -15,7 +15,7 @@ void	init_content_list(t_list_content *t)
 	t->last = NULL;
 }
 
-void	add_line_list(t_list_content *t, char *data)
+void	add_line_list(t_list_content *t, char *data, int line_nbr)
 {
 	t_content *element;
 
@@ -23,6 +23,7 @@ void	add_line_list(t_list_content *t, char *data)
 	if (!element)
 		return ;
 	element->line = data;
+	element->line_nbr = line_nbr;
 	element->next = t->first;
 	element->prev = NULL;
 	if (t->first)
@@ -32,7 +33,7 @@ void	add_line_list(t_list_content *t, char *data)
 	t->first = element;
 }
 
-void	add_reason_list(t_reason **reason, char *data)
+void	add_reason_list(t_reason **reason, char *data, int line_nbr)
 {
 	t_reason *element;
 
@@ -40,6 +41,7 @@ void	add_reason_list(t_reason **reason, char *data)
 	if (!element)
 		return ;
 	element->reason = data;
+	element->line_nbr = line_nbr;
 	element->next = *reason;
 	*reason = element;
 }
@@ -50,7 +52,12 @@ void	view_reason_list(t_file *file, t_reason *reason)
 	{
 		ft_putstr("norme: ");
 		ft_putstr(file->name);
-		ft_putstr(": ");
+		if (reason->line_nbr)
+		{
+			ft_putstr(" - line: ");
+			ft_putnbr(reason->line_nbr);
+		}
+		ft_putstr(" ");
 		ft_print_color(reason->reason, RED);
 		reason = reason->next;
 	}
@@ -62,6 +69,7 @@ void	view_content_list(t_list_content *t)
 	while(content)
 	{
 		ft_putstr(content->line);
+		ft_putnbr(content->line_nbr);
 		content = content->prev;
 	}
 }
