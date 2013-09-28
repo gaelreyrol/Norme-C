@@ -14,24 +14,24 @@
 
 void    scan(char *file_name)
 {
-	t_file  *file;
+	t_file  file;
 	t_list_content *t;
 	t_reason *reason;
 
 	t = malloc(sizeof(t_list_content));
 	reason = NULL;
-	file->name = file_name;
+	file.name = file_name;
 	init_content_list(t);
-	get_extension(file, &reason);
-	if (file->is_valid)
+	get_extension(&file, &reason);
+	if (file.is_valid)
 	{
-		if (ft_open_file(file, t))
+		if (ft_open_file(&file, t))
 		{
-			ft_print_name(file->name);
-			scan_file_type(file, t, &reason, file->extension);
+			ft_print_name(file.name);
+			scan_file_type(&file, t, &reason, file.extension);
 		}
 	}
-	view_reason_list(file, reason);
+	view_reason_list(&file, reason);
 	clear_reason_list(&reason);
 }
 
