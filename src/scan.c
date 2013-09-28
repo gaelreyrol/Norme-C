@@ -48,7 +48,7 @@ int		check_integrity_header(t_list_content *t, t_content *content, t_list_reason
 		else if ((!regex(content->line, "(\\*/\n$)")) || (!regex(content->line, "(^/\\*)")))
 		{
 			is_corrupted = 1;
-			add_reason_list(r, "Corrupted header line (must begin by '/*' and finish by '*/'\n", content->line_nbr);
+			add_reason_list(r, "Corrupted header line (must begin by '/*' and finish by '*/')\n", content->line_nbr);
 		}
 		content = content->prev;
 		i++;
